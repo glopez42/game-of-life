@@ -35,7 +35,7 @@ cellSize = dimXwindow / dimXgrid
 universe = [[ 1  for i in range(dimXgrid)] for j in range(dimYgrid)]
 
 speed = 0.1
-stop = False
+stop = True
 paintGrid = True
 
 # Window setup
@@ -47,7 +47,7 @@ def init():
 # Returns the cell's position on the universe
 def getCell(posX, posY):
     x = int(posX / int(dimXwindow / dimXgrid))
-    y = int(posY / int(dimYwindow / dimXgrid))
+    y = int(posY / int(dimYwindow / dimYgrid))
     return x,y
 
 # Returns the real cell's position on the window
@@ -61,9 +61,9 @@ def getRealPosition(xCell, yCell):
 
 # Draws all the living cells
 def drawAliveCells():
-    for j in range(dimXgrid):
-        for i in range(dimYgrid):
-            if universe[i][j] == 0:
+    for j in range(dimYgrid):
+        for i in range(dimXgrid):
+            if universe[j][i] == 0:
                 x,y = getRealPosition(i,j)
                 drawSquare(x,y)
     glFlush()
@@ -114,8 +114,8 @@ def mouseHandler(button, state, x, y):
     # When clicked, a cell is reborned or killed
     if button == GLUT_LEFT_BUTTON and state == GLUT_DOWN :
         xCell, yCell = getCell(x, y)
-        previousState = universe[xCell][yCell]
-        universe[xCell][yCell] = 0 if previousState == 1 else 1        
+        previousState = universe[yCell][xCell]
+        universe[yCell][xCell] = 0 if previousState == 1 else 1        
     
 def keyboard(key, x, y):
     global stop
@@ -129,7 +129,7 @@ def keyboard(key, x, y):
     
     # Random universe generator
     if key == b'r' or key == b'R': 
-        universe = [[ random.choice([1,1,1,1,1,1,1,1,1,0])  for i in range(dimXgrid)] for j in range(dimYgrid)]
+        universe = [[ random.choice([1,1,1,1,1,0])  for i in range(dimXgrid)] for j in range(dimYgrid)]
 
     # Freeze the current universe state
     if key == b' ':
@@ -147,7 +147,6 @@ def keyboard(key, x, y):
     if key == b's' or key == b'S':
         speed *= 4
     
-
     glutPostRedisplay()
 
 
