@@ -5,7 +5,7 @@ import random
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
-from data import *
+from data import data_manager
 
 BLUE = [0.0, 0.0, 1.0]
 GREEN = [0.0, 1.0, 0.0]
@@ -30,6 +30,9 @@ dimXgrid = 100
 dimYgrid = 100
 
 cellSize = dimXwindow / dimXgrid
+
+# Universe's rule
+rule = data_manager.getLifeRule()
 
 # First state of the universe
 universe = [[ 1  for i in range(dimXgrid)] for j in range(dimYgrid)]
@@ -141,11 +144,11 @@ def keyboard(key, x, y):
     
     # Speeds up the game
     if key == b'w' or key == b'W':
-        speed /= 4
+        speed -= speed * 0.5
     
     # Speeds down the game
     if key == b's' or key == b'S':
-        speed *= 4
+        speed += speed * 0.5
     
     glutPostRedisplay()
 
@@ -156,6 +159,8 @@ def keyboard(key, x, y):
 def main():
     global universe
     global stop
+    global rule
+
     glClear(GL_COLOR_BUFFER_BIT)
 
     if paintGrid:
@@ -166,10 +171,9 @@ def main():
     if not stop:
         drawAliveCells()
         time.sleep(speed)
-        universe = u.nextState(ruleDictionary, universe)
+        universe = u.nextState(rule, universe)
         glutPostRedisplay()
     
-
 glutInit(sys.argv)
 glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB) 
 glutInitWindowPosition(200,200)
