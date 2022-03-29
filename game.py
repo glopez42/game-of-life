@@ -42,7 +42,8 @@ stop = True
 paintGrid = True
 
 # Window setup
-def init(): 
+def init():
+    global winColor
     glClearColor(winColor[0], winColor[1], winColor[2], 1)
     glMatrixMode(GL_PROJECTION)
     gluOrtho2D( 0, dimXwindow, -dimYwindow, 0 ) 
@@ -72,6 +73,8 @@ def drawAliveCells():
     glFlush()
 
 def drawSquare(xPos, yPos):
+    global cellColor
+
     glColor3fv(cellColor)
     glBegin(GL_POLYGON)
     glVertex2f(xPos, yPos)
@@ -123,33 +126,56 @@ def mouseHandler(button, state, x, y):
 def keyboard(key, x, y):
     global stop
     global paintGrid
-    global speed
     global universe
+    global winColor
+    global cellColor
 
     # Clears the universe
     if key == b'c' or key == b'C':
         universe = [[ 1  for i in range(dimXgrid)] for j in range(dimYgrid)]
     
     # Random universe generator
-    if key == b'r' or key == b'R': 
+    elif key == b'r' or key == b'R': 
         universe = [[ random.choice([1,1,1,1,1,0])  for i in range(dimXgrid)] for j in range(dimYgrid)]
 
     # Freeze the current universe state
-    if key == b' ':
+    elif key == b' ':
         stop = not stop
     
     # Draws the grid
-    if key == b'g' or key == b'B':
+    elif key == b'g' or key == b'B':
         paintGrid = not paintGrid
     
+    # Changes color of the automata
+    elif (key == b'm' or key == b'M') and cellColor == WHITE:
+        cellColor = BLACK
+        winColor = WHITE
+        glClearColor(winColor[0], winColor[1], winColor[2], 1)
+    
+    elif (key == b'm' or key == b'M') and cellColor == BLACK:
+        cellColor = WHITE
+        winColor = BLACK
+        glClearColor(winColor[0], winColor[1], winColor[2], 1)
+    
+    glutPostRedisplay()
+
+def specialKeyboard(key, x, y):
+    global speed
+    global universe
+    global rule
+
     # Speeds up the game
-    if key == b'w' or key == b'W':
+    if key == GLUT_KEY_UP:
         speed -= speed * 0.5
     
     # Speeds down the game
-    if key == b's' or key == b'S':
+    if key == GLUT_KEY_DOWN:
         speed += speed * 0.5
     
+    # If the game is stopped, paints next state
+    if key == GLUT_KEY_RIGHT and stop:
+        universe = u.nextState(rule, universe)
+
     glutPostRedisplay()
 
 
@@ -169,7 +195,6 @@ def main():
     drawAliveCells()
 
     if not stop:
-        drawAliveCells()
         time.sleep(speed)
         universe = u.nextState(rule, universe)
         glutPostRedisplay()
@@ -185,6 +210,7 @@ init()
 glutDisplayFunc(main) 
 glutMouseFunc(mouseHandler)
 glutKeyboardFunc(keyboard)
+glutSpecialFunc(specialKeyboard)
 glutMainLoop()
 
 
