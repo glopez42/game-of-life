@@ -22,11 +22,11 @@ gridColor = GRAY
 cellColor = WHITE
 
 # Window dimensions
-dimXwindow = 1000
+dimXwindow = 1500
 dimYwindow = 1000
 
 # Universe dimensions
-dimXgrid = 100
+dimXgrid = 150
 dimYgrid = 100
 
 cellSize = dimXwindow / dimXgrid

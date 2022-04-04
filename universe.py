@@ -7,7 +7,6 @@ def _getContext(x, y, universe):
     xPointer = x - 1
     yPointer = y - 1
 
-
     context = []
     # to get the 9 cells
     for _ in range(3):

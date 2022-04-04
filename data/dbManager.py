@@ -1,10 +1,26 @@
 from pymongo import *
+import json
 
-client = MongoClient("mongodb://root:root@localhost:27017")
-db = client['gameDB']
+def connect() -> MongoClient:
+    client = MongoClient("mongodb://root:root@localhost:27017")
+    db = client['gameDB']
+    return db
 
-db['rules'].insert_one({
-    "life_rule" : "1111" 
-})
+def insertLifeRule():
+    db = connect()
 
-print(db['rules'].find_one())
+    f = open('data/data.json')
+    data = json.load(f)
+    f.close()
+
+    db["rules"].insert_one({
+        "name" : "life_rule",
+        "value" : data["life_rule"]
+    })
+
+def getActualRule():
+    db = connect()
+    collection = db["rules"].find_one({"name" : "life_rule"})
+    return collection
+
+print(getActualRule()["value"])
