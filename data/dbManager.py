@@ -18,9 +18,23 @@ def insertLifeRule():
         "value" : data["life_rule"]
     })
 
-def getActualRule():
+def insertContexts():
+    db = connect()
+
+    f = open('data/data.json')
+    data = json.load(f)
+    f.close()
+
+    db["contexts"].insert_one({
+        "contexts" : data["contexts"]
+    })
+
+def getLifeRule():
     db = connect()
     collection = db["rules"].find_one({"name" : "life_rule"})
     return collection
 
-print(getActualRule()["value"])
+def getContexts():
+    db = connect()
+    collection = db["contexts"].find_one()
+    return collection

@@ -1,25 +1,16 @@
-import json
 
-def _loadJson():
-    f = open('data/data.json')
-    data = json.load(f)
-    f.close()
-    return data
+from data import dbManager
 
-def getActualRule():
-    data = _loadJson()
-    contexts = data['contexts']
-    rule = data['actual_rule']
-    ruleDictionary = {}
-    for i in range(512):
-        ruleDictionary.update({ tuple(contexts[i]) : rule[i]})
-    return ruleDictionary
+def generateLifeRule():
+    collection_contexts = dbManager.getContexts()
+    collection_rule = dbManager.getLifeRule()
 
-def getLifeRule():
-    data = _loadJson()
-    contexts = data['contexts']
-    ruleGL = data['life_rule']
-    ruleDictionary = {}
-    for i in range(512):
-        ruleDictionary.update({ tuple(contexts[i]) : ruleGL[i]})
-    return ruleDictionary
+    contexts = collection_contexts["contexts"]
+    rule = collection_rule["value"]
+
+    dict = {}
+    for (context,bit) in zip(contexts, rule):
+        dict.update({
+            tuple(context) : bit
+        })
+    return dict

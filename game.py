@@ -32,7 +32,7 @@ dimYgrid = 100
 cellSize = dimXwindow / dimXgrid
 
 # Universe's rule
-rule = data_manager.getLifeRule()
+rule = data_manager.generateLifeRule()
 
 # First state of the universe
 universe = [[ 1  for i in range(dimXgrid)] for j in range(dimYgrid)]
