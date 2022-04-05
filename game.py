@@ -5,7 +5,8 @@ import random
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
-from data import data_manager
+from data import dbManager
+from rule import Rule
 
 BLUE = [0.0, 0.0, 1.0]
 GREEN = [0.0, 1.0, 0.0]
@@ -32,7 +33,8 @@ dimYgrid = 100
 cellSize = dimXwindow / dimXgrid
 
 # Universe's rule
-rule = data_manager.generateLifeRule()
+lifeRule = Rule(dbManager.getLifeRule())
+rule = lifeRule.getRule()
 
 # First state of the universe
 universe = [[ 1  for i in range(dimXgrid)] for j in range(dimYgrid)]

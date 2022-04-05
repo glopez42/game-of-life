@@ -29,12 +29,15 @@ def insertContexts():
         "contexts" : data["contexts"]
     })
 
-def getLifeRule():
+def getRuleByName(name):
     db = connect()
-    collection = db["rules"].find_one({"name" : "life_rule"})
-    return collection
+    collection = db["rules"].find_one({"name" : name})
+    return collection["value"]
+
+def getLifeRule():
+    return getRuleByName("life_rule")
 
 def getContexts():
     db = connect()
     collection = db["contexts"].find_one()
-    return collection
+    return collection["contexts"]
