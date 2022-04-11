@@ -20,8 +20,8 @@ class HammingDistanceMutation(Mutation):
         numberOfMutations = 1 if distance >= 5 else 5
 
         for _ in range(numberOfMutations):
-            bitArray1 = self._mutate(bitArray1)
-            bitArray2 = self._mutate(bitArray2)
+            bitArray1 = self.mutate(bitArray1)
+            bitArray2 = self.mutate(bitArray2)
 
         rule1.setRule(bitArray1)
         rule2.setRule(bitArray2)
@@ -37,7 +37,7 @@ class HammingDistanceMutation(Mutation):
         return distance
 
     # Takes a random position of the array and reverse its state
-    def _mutate(self, bitArray):
+    def mutate(self, bitArray):
         length = len(bitArray)
         randomPos = random.randint(0, length)
         previousState = bitArray[randomPos]
