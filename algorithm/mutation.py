@@ -39,7 +39,7 @@ class HammingDistanceMutation(Mutation):
     # Takes a random position of the array and reverse its state
     def mutate(self, bitArray):
         length = len(bitArray)
-        randomPos = random.randint(0, length)
+        randomPos = random.randint(0, length - 1)
         previousState = bitArray[randomPos]
         bitArray[randomPos] = 0 if previousState == 1 else 1
         return bitArray

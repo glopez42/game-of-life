@@ -18,6 +18,14 @@ def insertLifeRule():
         "value" : data["life_rule"]
     })
 
+def insertRule(name, rule):
+    db = connect()
+
+    db["rules"].insert_one({
+        "name" : name,
+        "value" : rule
+    })
+
 def insertContexts():
     db = connect()
 

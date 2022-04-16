@@ -23,17 +23,17 @@ gridColor = GRAY
 cellColor = WHITE
 
 # Window dimensions
-dimXwindow = 1500
+dimXwindow = 1000
 dimYwindow = 1000
 
 # Universe dimensions
-dimXgrid = 150
-dimYgrid = 100
+dimXgrid = 200
+dimYgrid = 200
 
 cellSize = dimXwindow / dimXgrid
 
 # Universe's rule
-lifeRule = Rule(dbManager.getLifeRule())
+lifeRule = Rule(dbManager.getRuleByName("prueb2"))
 rule = lifeRule.getRule()
 
 # First state of the universe
