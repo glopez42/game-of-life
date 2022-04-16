@@ -33,7 +33,7 @@ dimYgrid = 200
 cellSize = dimXwindow / dimXgrid
 
 # Universe's rule
-lifeRule = Rule(dbManager.getRuleByName("prueb2"))
+lifeRule = Rule(dbManager.getRuleByName("prueba"))
 rule = lifeRule.getRule()
 
 # First state of the universe
