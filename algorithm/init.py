@@ -16,9 +16,9 @@ def aliveNeighbors(c):
 def getBaysSpaceRule() -> Rule:
 	rule = []
 
-	# Rule 35/33
-	Eb = 3
-	Eh = 5
+	# Rule 12/33
+	Eb = 1
+	Eh = 2
 	Fb = 3
 	Fh = 3
 

@@ -80,10 +80,10 @@ class Simulation():
     def _check_population(self):
         # if there is a population decrease
         if self.lastPop > self.actualPop:
-            self.m2 += 1
+            self.m1 += 1
         # if there is a population growth
         elif self.lastPop < self.actualPop:
-            self.m1 += 1
+            self.m2 += 1
         self.lastPop = self.actualPop
 
     def _check_limits(self):
@@ -136,19 +136,21 @@ class Simulation():
         x2 = self.xLimits2 - 1
         y1 = self.yLimits1 + 1
         y2 = self.yLimits2 - 1
+        count = 1
 
         while self._inside_square(x1, x2, y1, y2, aliveCells):
             x1 += 1
             x2 -= 1
             y1 += 1
             y2 -= 1
-        
+            count += 1
+
         # if there has been a decrease
-        if  x1 != self.xLimits1:
-            self.xLimits1 = x1
-            self.xLimits2 = x2
-            self.yLimits1 = y1
-            self.yLimits2 = y2
+        if count != 1:
+            self.xLimits1 += count - 1
+            self.xLimits2 -= count - 1
+            self.yLimits1 += count - 1
+            self.yLimits2 -= count - 1
             self.n2 += 1
 
     def _set_initial_state(self):
@@ -156,8 +158,8 @@ class Simulation():
             for x in range(self.width):
                 # random state for the middle area
                 if self._inside_limits(x,y):
-                    # 25% chance of being alive
-                    choice = random.choice([1,1,1,0])
+                    # 1/6 chance of being alive
+                    choice = random.choice([1,1,1,1,1,0])
                     self.universe[y][x] = choice
                     if choice == 0:
                         self.lastPop += 1

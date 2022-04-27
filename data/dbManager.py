@@ -26,6 +26,14 @@ def insertRule(name, rule):
         "value" : rule
     })
 
+'''
+from algorithm.init import *
+def insertBaysRule(E, F):
+    name = str(E) + "/" + str(F)
+    rule = getBaysSpaceRule().getRuleList()
+    insertRule(name, rule)
+'''
+
 def insertContexts():
     db = connect()
 

@@ -10,7 +10,7 @@ import timeit
 class Algorithm():
 
     def __init__(self) -> None:
-        self.iter = 5
+        self.iter = 50
         self.crossover = SinglePointCrossover()
         self.mutation = HammingDistanceMutation()
         self.fitness = FirstAproachFitness()
@@ -21,7 +21,7 @@ class Algorithm():
         # sets up the population
         self._initPopulation()
 
-        for i in range(self.iter):
+        for i in range(self.iter - 1):
             start = timeit.default_timer()
             print("##### Iter " + str(i) + " started #####\n")
             
@@ -63,7 +63,7 @@ class Algorithm():
                 mutationResults.append(result1)
                 mutationResults.append(result2)
             stopAux = timeit.default_timer()
-            print("Crossover ended in  " + str(stopAux - startAux) + " s")
+            print("Mutation ended in  " + str(stopAux - startAux) + " s")
             
             # new population
             self.population = []

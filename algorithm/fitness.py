@@ -14,10 +14,9 @@ class Fitness(ABC):
 class FirstAproachFitness(Fitness):
 
     def __init__(self):
-        self.iters = 150
+        self.iters = 200
         self.width = 200
         self.height = 200
-        pass
 
     # calculates fitness of each rule and returns a list containing all fitness results
     def fitnessFunction(self, population: List[Rule]):
@@ -32,7 +31,7 @@ class FirstAproachFitness(Fitness):
             simulation = Simulation(self.iters, self.width, self.height, rule.getRule())
             parameters = simulation.runSimulation()
             stop = timeit.default_timer()
-            print("\tSimulation ended in  " + str(stop - start) + " ")
+            print("\tSimulation ended in  " + str(stop - start) + " s")
             
             fitness = self._calculate_fitness(parameters)
             results.append((rule, fitness))

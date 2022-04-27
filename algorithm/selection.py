@@ -14,6 +14,7 @@ class SelectBest20(Selection):
         sorted_by_fitness = sorted(population, key=lambda tup: tup[1], reverse=True)
         best20 = sorted_by_fitness[0:20]
         best = []
+        print("Best fitness: ", best20[0][1])
         # removes the fitness value of each rule as it is not longer required
         for tuple in best20:
             best.append(tuple[0])

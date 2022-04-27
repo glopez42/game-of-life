@@ -33,7 +33,7 @@ dimYgrid = 200
 cellSize = dimXwindow / dimXgrid
 
 # Universe's rule
-lifeRule = Rule(dbManager.getRuleByName("prueba"))
+lifeRule = Rule(dbManager.getRuleByName("life_rule"))
 rule = lifeRule.getRule()
 
 # First state of the universe
@@ -138,7 +138,17 @@ def keyboard(key, x, y):
     
     # Random universe generator
     elif key == b'r' or key == b'R': 
-        universe = [[ random.choice([1,1,1,1,1,0])  for i in range(dimXgrid)] for j in range(dimYgrid)]
+        universe = [[ random.choice([1,1,1,1,1,0]) for i in range(dimXgrid)] for j in range(dimYgrid)]
+    
+    # Random universe generator inside a 40x40 middle square
+    elif key == b's' or key == b'S':
+        for j in range(dimYgrid):
+            for i in range(dimXgrid):
+                if i >= 80 and i <= 120 and j >= 80 and j <= 120:
+                    universe[j][i] = random.choice([1,1,1,0])
+                else:
+                    universe[j][i] = 1
+
 
     # Freeze the current universe state
     elif key == b' ':
