@@ -27,7 +27,7 @@ for bit1, bit2 in zip(rule.getRuleList(), rule2):
 # Borrar: prueba2, prueba3
 
 # Bays space: 12/33
-# Interesantes:
+# Interesantes: prueba5 (Gliders), 
 # Borrar: prueba4
 
 
