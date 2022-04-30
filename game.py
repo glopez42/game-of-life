@@ -8,6 +8,11 @@ from OpenGL.GLUT import *
 from data import dbManager
 from rule import Rule
 
+
+if len(sys.argv) != 4:
+    print("ERROR: game.py usage: \n\npython game.py [rule_name] [window's dimension] [universe's dimension]")
+    exit(-1)
+
 BLUE = [0.0, 0.0, 1.0]
 GREEN = [0.0, 1.0, 0.0]
 RED = [1.0, 0.0, 0.0]
@@ -23,17 +28,17 @@ gridColor = GRAY
 cellColor = WHITE
 
 # Window dimensions
-dimXwindow = 1000
-dimYwindow = 1000
+dimXwindow = int(sys.argv[2])
+dimYwindow = int(sys.argv[2])
 
 # Universe dimensions
-dimXgrid = 200
-dimYgrid = 200
+dimXgrid = int(sys.argv[3])
+dimYgrid = int(sys.argv[3])
 
 cellSize = dimXwindow / dimXgrid
 
 # Universe's rule
-lifeRule = Rule(dbManager.getRuleByName("life_rule"))
+lifeRule = Rule(dbManager.getRuleByName(sys.argv[1]))
 rule = lifeRule.getRule()
 
 # First state of the universe
@@ -191,9 +196,6 @@ def specialKeyboard(key, x, y):
     glutPostRedisplay()
 
 
-
-
-
 def main():
     global universe
     global stop
@@ -210,6 +212,7 @@ def main():
         time.sleep(speed)
         universe = u.nextState(rule, universe)
         glutPostRedisplay()
+
     
 glutInit(sys.argv)
 glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB) 

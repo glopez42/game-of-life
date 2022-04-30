@@ -1,5 +1,4 @@
-from operator import index
-import timeit
+#import timeit
 
 def loop(universe, x, y):
     # getting the cell's context, 9 cells (3x3 matrix)

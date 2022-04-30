@@ -10,14 +10,16 @@ import timeit
 class Algorithm():
 
     def __init__(self) -> None:
-        self.iter = 50
+        self.iter = 0
         self.crossover = SinglePointCrossover()
         self.mutation = HammingDistanceMutation()
         self.fitness = FirstAproachFitness()
         self.selection = SelectBest20()
         self.population = []
   
-    def run(self) -> Rule:
+    def run(self, iterations) -> Rule:
+
+        self.iter = iterations
         # sets up the population
         self._initPopulation()
 
