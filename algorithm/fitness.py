@@ -24,7 +24,7 @@ class FirstAproachFitness(Fitness):
         results = []
         x = 1
         for rule in population:
-            # runs a simulation of an universe during 300 iterations with that rule
+            # runs a simulation of an universe during 200 iterations with that rule
 
             print("\tSimulation {} out of 50 started...".format(x))
             start = timeit.default_timer()

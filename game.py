@@ -10,7 +10,10 @@ from rule import Rule
 
 
 if len(sys.argv) != 4:
-    print("ERROR: game.py usage: \n\npython game.py [rule_name] [window's dimension] [universe's dimension]")
+    print("\nERROR: game.py usage: \n\npython game.py"
+    + "\n\t[rule_name] "
+    + "\n\t[window's dimension] "
+    + "\n\t[universe's dimension]")
     exit(-1)
 
 BLUE = [0.0, 0.0, 1.0]
@@ -57,14 +60,14 @@ def init():
 
 # Returns the cell's position on the universe
 def getCell(posX, posY):
-    x = int(posX / int(dimXwindow / dimXgrid))
-    y = int(posY / int(dimYwindow / dimYgrid))
+    x = int(posX / (dimXwindow / dimXgrid))
+    y = int(posY / (dimYwindow / dimYgrid))
     return x,y
 
 # Returns the real cell's position on the window
 def getRealPosition(xCell, yCell):
-    x = int(xCell * int(dimXwindow / dimXgrid))
-    y = -1 * int(yCell * int(dimYwindow / dimYgrid))
+    x = int(xCell * (dimXwindow / dimXgrid))
+    y = -1 * int(yCell * (dimYwindow / dimYgrid))
     return x,y
 
 
@@ -128,7 +131,7 @@ def mouseHandler(button, state, x, y):
     if button == GLUT_LEFT_BUTTON and state == GLUT_DOWN :
         xCell, yCell = getCell(x, y)
         previousState = universe[yCell][xCell]
-        universe[yCell][xCell] = 0 if previousState == 1 else 1        
+        universe[yCell][xCell] = 0 if previousState == 1 else 1     
     
 def keyboard(key, x, y):
     global stop
@@ -147,9 +150,11 @@ def keyboard(key, x, y):
     
     # Random universe generator inside a 40x40 middle square
     elif key == b's' or key == b'S':
+        centerY = int(dimYgrid/2)
+        centerX = int(dimXgrid/2)
         for j in range(dimYgrid):
             for i in range(dimXgrid):
-                if i >= 80 and i <= 120 and j >= 80 and j <= 120:
+                if i >= centerX - 20 and i <= centerX + 20 and j >= centerY - 20 and j <= centerY + 20:
                     universe[j][i] = random.choice([1,1,1,0])
                 else:
                     universe[j][i] = 1
@@ -194,6 +199,7 @@ def specialKeyboard(key, x, y):
         universe = u.nextState(rule, universe)
 
     glutPostRedisplay()
+
 
 
 def main():

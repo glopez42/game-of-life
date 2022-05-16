@@ -13,14 +13,13 @@ def aliveNeighbors(c):
 
 
 # Bays space rule: EbEh / FbFh 
-def getBaysSpaceRule() -> Rule:
+def getBaysSpaceRule(ruleID) -> Rule:
 	rule = []
 
-	# Rule 12/33
-	Eb = 1
-	Eh = 2
-	Fb = 3
-	Fh = 3
+	Eb = ruleID[0]
+	Eh = ruleID[1]
+	Fb = ruleID[2]
+	Fh = ruleID[3]
 
 	contexts = dbManager.getContexts()
 	for c in contexts:

@@ -9,13 +9,14 @@ import timeit
 
 class Algorithm():
 
-    def __init__(self) -> None:
+    def __init__(self, initialRule) -> None:
         self.iter = 0
         self.crossover = SinglePointCrossover()
         self.mutation = HammingDistanceMutation()
         self.fitness = FirstAproachFitness()
         self.selection = SelectBest20()
         self.population = []
+        self.initialRule = initialRule
   
     def run(self, iterations) -> Rule:
 
@@ -36,7 +37,7 @@ class Algorithm():
 
             print("Selection started...")
             startAux = timeit.default_timer()
-            selectionResults = self.selection.makeSelection(fitnessResults)
+            selectionResults, bestFitness = self.selection.makeSelection(fitnessResults)
             stopAux = timeit.default_timer()
             print("Selection ended in  " +  str(stopAux - startAux) + " s")
 
@@ -76,18 +77,22 @@ class Algorithm():
             stop = timeit.default_timer()
             print("\t---> Finished iteration in " + str(stop - start) + " s")
 
+            # if the fitness is already quite good
+            if bestFitness >= 1.65:
+                break
+
         # last fitness and selection
         print("\n#### Last Fitness ####")
         fitnessResults = self.fitness.fitnessFunction(self.population)
-        selectionResults = self.selection.makeSelection(fitnessResults)         
+        selectionResults, bestFitness = self.selection.makeSelection(fitnessResults)         
         
         # retrieves the best rule
-        return selectionResults[0]
+        return selectionResults[0], bestFitness
 
 
     def _initPopulation(self):
         # Initial rule from Bays space
-        initialRule = getBaysSpaceRule()
+        initialRule = getBaysSpaceRule(self.initialRule)
 
         # First 10 rules without mutations
         for _ in range(10):

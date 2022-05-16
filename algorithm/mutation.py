@@ -11,7 +11,7 @@ class Mutation(ABC):
 
 class HammingDistanceMutation(Mutation):
 
-    # performs the correspondant mutations in each rule
+    # performs the correspondent mutations in each rule
     def performMutation(self, rule1: Rule, rule2: Rule):
         bitArray1 = rule1.getRuleList()
         bitArray2 = rule2.getRuleList()

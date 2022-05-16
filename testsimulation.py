@@ -2,7 +2,7 @@ from algorithm.simulation import Simulation
 from rule import Rule
 from data import dbManager
 
-rule = Rule(dbManager.getRuleByName("prueba3"))
+rule = Rule(dbManager.getRuleByName("prueba9"))
 sim = Simulation(200, 200, 200, rule.getRule())
 parameters = sim.runSimulation()
 
