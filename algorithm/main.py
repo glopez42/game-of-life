@@ -24,7 +24,7 @@ class Algorithm():
         # sets up the population
         self._initPopulation()
 
-        for i in range(self.iter - 1):
+        for i in range(self.iter):
             start = timeit.default_timer()
             print("##### Iter " + str(i) + " started #####\n")
             
@@ -40,6 +40,10 @@ class Algorithm():
             selectionResults, bestFitness = self.selection.makeSelection(fitnessResults)
             stopAux = timeit.default_timer()
             print("Selection ended in  " +  str(stopAux - startAux) + " s")
+
+            # if the fitness is already quite good
+            if bestFitness >= 1.75:
+                break
 
             # crossover
             print("Crossover started...")
@@ -77,14 +81,10 @@ class Algorithm():
             stop = timeit.default_timer()
             print("\t---> Finished iteration in " + str(stop - start) + " s")
 
-            # if the fitness is already quite good
-            if bestFitness >= 1.65:
-                break
 
         # last fitness and selection
-        print("\n#### Last Fitness ####")
-        fitnessResults = self.fitness.fitnessFunction(self.population)
-        selectionResults, bestFitness = self.selection.makeSelection(fitnessResults)         
+        print("\n#### Algorithm execution finished ####")
+        print("\n\tBest fitness: " + str(bestFitness))
         
         # retrieves the best rule
         return selectionResults[0], bestFitness
@@ -92,39 +92,39 @@ class Algorithm():
 
     def _initPopulation(self):
         # Initial rule from Bays space
-        initialRule = getBaysSpaceRule(self.initialRule)
+        startRule = getBaysSpaceRule(self.initialRule)
 
         # First 10 rules without mutations
         for _ in range(10):
-            rule = copy.deepcopy(initialRule)
+            rule = copy.deepcopy(startRule)
             self.population.append(rule)
 
         # Performs 10 single mutations
         for _ in range(10):
-            bitArray = self.mutation.mutate(initialRule.getRuleList())
-            mutatedRule = Rule(bitArray)            
-            self.population.append(mutatedRule)
+            startList = copy.deepcopy(startRule.getRuleList())
+            bitArray = self.mutation.mutate(startList)
+            self.population.append(Rule(bitArray))
         
         # Performs 10 double mutations
         for _ in range(10):
-            mutatedRule = initialRule
+            mutatedRule = copy.deepcopy(startRule)
+            bitArray = mutatedRule.getRuleList()
             for _ in range(2):
-                bitArray = self.mutation.mutate(mutatedRule.getRuleList())
-                mutatedRule = Rule(bitArray)
-            self.population.append(mutatedRule)
+                bitArray = self.mutation.mutate(bitArray)
+            self.population.append(Rule(bitArray))
         
         # Performs 10 triple mutations
         for _ in range(10):
-            mutatedRule = initialRule
+            mutatedRule = copy.deepcopy(startRule)
+            bitArray = mutatedRule.getRuleList()
             for _ in range(3):
-                bitArray = self.mutation.mutate(mutatedRule.getRuleList())
-                mutatedRule = Rule(bitArray)
-            self.population.append(mutatedRule)
+                bitArray = self.mutation.mutate(bitArray)
+            self.population.append(Rule(bitArray))
         
         # Performs 10 cuadruple mutations
         for _ in range(10):
-            mutatedRule = initialRule
+            mutatedRule = copy.deepcopy(startRule)
+            bitArray = mutatedRule.getRuleList()
             for _ in range(4):
-                bitArray = self.mutation.mutate(mutatedRule.getRuleList())
-                mutatedRule = Rule(bitArray)
-            self.population.append(mutatedRule)
+                bitArray = self.mutation.mutate(bitArray)
+            self.population.append(Rule(bitArray))

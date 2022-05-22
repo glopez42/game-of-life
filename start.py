@@ -22,6 +22,8 @@ initialRule = (Eb, Eh, Fb, Fh)
 rule, fitness = Algorithm(initialRule).run(iter)
 dbManager.insertRule(sys.argv[2], rule.getRuleList())
 
+print("\nRule saved on the database with name: " + sys.argv[2])
+
 # Mutations
 rule2 = dbManager.getRuleByName(initialRuleName)
 cont = 0
@@ -29,7 +31,6 @@ for bit1, bit2 in zip(rule.getRuleList(), rule2):
     if bit1 != bit2:
         print("Mutación en bit: ", cont)
     cont += 1
-
 
 
 # Bays space: 35/33
@@ -41,18 +42,18 @@ for bit1, bit2 in zip(rule.getRuleList(), rule2):
 # Borrar: prueba4, prueba7
 
 # Bays space: 23/44
-# Interesantes: prueba9
-# Borrar: 
+# Interesantes: prueba9, prueba12 (Gliders)
+# Borrar: prueba13
 
 # Bays space: 33/44 - Esta solo genera unos pocos patrones estáticos
 # Interesantes: 
-# Borrar: 
+# Borrar: prueba10
 
 # Bays space: 24/44
-# Interesantes: 
+# Interesantes: prueba11 (Gliders)
 # Borrar: 
 
-# Bays space caóticas: 14/33, 34/22, 13/34
+# Bays space caóticas: 14/33, 34/22, 13/34, 22/33
 
 
-# prueba9
+# prueba13 - 23/44

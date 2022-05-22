@@ -11,7 +11,6 @@ def aliveNeighbors(c):
             alive += 1
     return alive
 
-
 # Bays space rule: EbEh / FbFh 
 def getBaysSpaceRule(ruleID) -> Rule:
 	rule = []

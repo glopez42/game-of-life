@@ -6,7 +6,7 @@ def connect() -> MongoClient:
     db = client['gameDB']
     return db
 
-def insertLifeRule():
+def insertLifeRule() -> None:
     db = connect()
 
     f = open('data/data.json')
@@ -18,7 +18,7 @@ def insertLifeRule():
         "value" : data["life_rule"]
     })
 
-def insertRule(name, rule):
+def insertRule(name, rule) -> None:
     db = connect()
 
     db["rules"].insert_one({
@@ -28,13 +28,14 @@ def insertRule(name, rule):
 
 '''
 from algorithm.init import *
-def insertBaysRule(E, F):
-    name = str(E) + "/" + str(F)
-    rule = getBaysSpaceRule().getRuleList()
+def insertBaysRule(Eb, Eh, Fb, Fh):
+    name = str(Eb) + str(Eh) + "/" + str(Fb) + str(Fh)
+    tuple = (Eb, Eh, Fb, Fh)
+    rule = getBaysSpaceRule(tuple).getRuleList()
     insertRule(name, rule)
 '''
 
-def insertContexts():
+def insertContexts() -> None:
     db = connect()
 
     f = open('data/data.json')
@@ -45,7 +46,7 @@ def insertContexts():
         "contexts" : data["contexts"]
     })
 
-def getRuleByName(name):
+def getRuleByName(name) :
     db = connect()
     collection = db["rules"].find_one({"name" : name})
     return collection["value"]

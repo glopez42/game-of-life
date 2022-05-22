@@ -1,8 +1,11 @@
+import sys
 from algorithm.simulation import Simulation
 from rule import Rule
 from data import dbManager
+import sys
 
-rule = Rule(dbManager.getRuleByName("prueba9"))
+name = sys.argv[1]
+rule = Rule(dbManager.getRuleByName(name))
 sim = Simulation(200, 200, 200, rule.getRule())
 parameters = sim.runSimulation()
 
