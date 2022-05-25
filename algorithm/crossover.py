@@ -15,7 +15,7 @@ class SinglePointCrossover(Crossover):
         bitArray2 = rule2.getRuleList()
 
         length = len(bitArray1)
-        middle = int(length)
+        middle = int(length / 2)
 
         newBitArray = bitArray1[0:middle] + bitArray2[middle:length]
 
