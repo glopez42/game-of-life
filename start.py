@@ -47,7 +47,7 @@ for bit1, bit2 in zip(rule.getRuleList(), rule2):
 
 # Bays space: 33/44 - Esta solo genera unos pocos patrones estáticos
 # Interesantes: 
-# Borrar: prueba10
+# Borrar: prueba10, prueba17
 
 # Bays space: 24/44
 # Interesantes: prueba11 (Gliders), prueba16
@@ -56,4 +56,4 @@ for bit1, bit2 in zip(rule.getRuleList(), rule2):
 # Bays space caóticas: 14/33, 34/22, 13/34, 22/33, prueba1000
 
 
-# prueba1000 - 24/44
+# prueba17 - 33/44
