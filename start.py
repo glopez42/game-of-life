@@ -29,31 +29,5 @@ rule2 = dbManager.getRuleByName(initialRuleName)
 cont = 0
 for bit1, bit2 in zip(rule.getRuleList(), rule2):
     if bit1 != bit2:
-        print("Mutación en bit: ", cont)
+        print("Mutated bit in position: ", cont)
     cont += 1
-
-
-# Bays space: 35/33
-# Interesantes: prueba, prueb2, prueba42
-# Borrar: prueba2, prueba3, prueba8
-
-# Bays space: 12/33
-# Interesantes: prueba5 (Gliders), prueba6 (Gliders)
-# Borrar: prueba4, prueba7
-
-# Bays space: 23/44
-# Interesantes: prueba9, prueba12 (Gliders), prueba14
-# Borrar: prueba13
-
-# Bays space: 33/44 - Esta solo genera unos pocos patrones estáticos
-# Interesantes: 
-# Borrar: prueba10, prueba17
-
-# Bays space: 24/44
-# Interesantes: prueba11 (Gliders), prueba16
-# Borrar: 
-
-# Bays space caóticas: 14/33, 34/22, 13/34, 22/33, prueba1000
-
-
-# prueba17 - 33/44
