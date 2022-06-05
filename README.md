@@ -37,7 +37,7 @@ pip install PyOpenGL‑3.1.6‑cp38‑cp38‑win_amd64.whl
 
 ```
 
-For **Linux** users, you can follow [this](https://www.geeksforgeeks.org/how-to-install-pyopengl-package-on-linux/) guide.
+For **Linux** users, you can follow [this](https://pypi.org/project/PyOpenGL/) guide.
 
 
 # How to use it
