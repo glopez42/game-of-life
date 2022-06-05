@@ -74,6 +74,19 @@ For instance, if you want to run the Game of Life on a $800\times800$ window and
 python game.py life_rule 800 100
 ```
 
+This program includes the following key and mouse events to control the graphical interface:
+
+- Left click: when clicking a cell you reverse its state from dead to alive and vice versa.
+- "C" key: all the cells change its state to dead.
+- "R" key: all the cells change its state to a random one.
+- "S" key: similar to the later one, but this time only with the cells inside a central square of $40 \times 40$ cells.
+- "Space" key: stops or resume the program execution.
+- "M"  key: inverts the cellular automaton color. By default the alive cells will be white and the dead ones black.
+- ⬆ key: increases the execution speed.
+- ⬇ key: decreases the execution speed.
+- ➡ key: if the execution is stopped, the cellular automaton will evolve to its following state.
+
+
 ## start.py
 
 This program is used for running the algorithm mentioned above. It is a genetic algorithm that finds new rules that are capable of generating dinamic patters that can simulate movements across the grid. Again, for further information on how it works check the original [paper](https://content.wolfram.com/uploads/sites/13/2018/02/17-3-2.pdf).
