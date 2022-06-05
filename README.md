@@ -79,7 +79,7 @@ This program includes the following key and mouse events to control the graphica
 - Left click: when clicking a cell you reverse its state from dead to alive and vice versa.
 - "C" key: all the cells change its state to dead.
 - "R" key: all the cells change its state to a random one.
-- "S" key: similar to the later one, but this time only with the cells inside a central square of $40 \times 40$ cells.
+- "S" key: similar to the latter one, but this time only with the cells inside a central square of $40 \times 40$ cells.
 - "Space" key: stops or resume the program execution.
 - "M"  key: inverts the cellular automaton color. By default the alive cells will be white and the dead ones black.
 - ⬆ key: increases the execution speed.
