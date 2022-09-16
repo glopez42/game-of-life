@@ -7,6 +7,7 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from data import dbManager
 from rule import Rule
+from algorithm.init import getBaysSpaceRule
 
 
 if len(sys.argv) != 4:
@@ -41,8 +42,18 @@ dimYgrid = int(sys.argv[3])
 cellSize = dimXwindow / dimXgrid
 
 # Universe's rule
-lifeRule = Rule(dbManager.getRuleByName(sys.argv[1]))
-rule = lifeRule.getRule()
+try:
+    lifeRule = Rule(dbManager.getRuleByName(sys.argv[1]))
+    rule = lifeRule.getRule()
+except:
+    initialRuleName = sys.argv[1]
+    splitRule = initialRuleName.split("/")
+    Eb = int(splitRule[0][0])
+    Eh = int(splitRule[0][1])
+    Fb = int(splitRule[1][0])
+    Fh = int(splitRule[1][1])
+    initialRule = (Eb, Eh, Fb, Fh)
+    rule = getBaysSpaceRule(initialRule).getRule()
 
 # First state of the universe
 universe = [[ 1  for i in range(dimXgrid)] for j in range(dimYgrid)]
@@ -159,6 +170,16 @@ def keyboard(key, x, y):
                 else:
                     universe[j][i] = 1
 
+    # Random universe generator inside a 10x10 middle square
+    elif key == b'a' or key == b'A':
+        centerY = int(dimYgrid/2)
+        centerX = int(dimXgrid/2)
+        for j in range(dimYgrid):
+            for i in range(dimXgrid):
+                if i >= centerX - 5 and i <= centerX + 5 and j >= centerY - 5 and j <= centerY + 5:
+                    universe[j][i] = random.choice([1,0])
+                else:
+                    universe[j][i] = 1
 
     # Freeze the current universe state
     elif key == b' ':
