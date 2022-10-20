@@ -8,7 +8,7 @@ through Evolutionary Algorithms](https://content.wolfram.com/uploads/sites/13/20
 
 # Dependencies
 
-Before launching the game or the algorithm you should have previously downloaded `docker`, `docker-compose`, and the Python libraries `pymongo` and `PyOpenGL`. The code works and has been programmed in Python 3.8.
+Before launching the game or the algorithm you should have previously downloaded `docker`, `docker-compose`, and the Python libraries `pymongo` and `PyOpenGL`. The code works/has been programmed in Python 3.8.
 
 ## docker and docker-compose
 
