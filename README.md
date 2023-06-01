@@ -8,21 +8,7 @@ through Evolutionary Algorithms](https://content.wolfram.com/uploads/sites/13/20
 
 # Dependencies
 
-Before launching the game or the algorithm you should have previously downloaded `docker`, `docker-compose`, and the Python libraries `pymongo` and `PyOpenGL`. The code works and has been programmed in Python 3.8.
-
-## docker and docker-compose
-
-Follow this [link](https://docs.docker.com/desktop/windows/install/) to install docker on **Windows**.
-
-Follow this [link](https://docs.docker.com/engine/install/ubuntu/) to install docker on **Linux**.
-
-In order to install docker-compose regardless of the OS, follow this [link](https://docs.docker.com/compose/install/).
-
-## pymongo
-
-```
-pip install pymongo 
-```
+Before launching the game or the algorithm you should have previously downloaded `PyOpenGL`. The code works/has been programmed in Python 3.8.
 
 ## PyOpenGL
 
@@ -43,18 +29,6 @@ For **Linux** users, you can follow [this](https://pypi.org/project/PyOpenGL/) g
 
 
 # How to use it
-
-The program will create a database to store the algorithm's results and test them later. In order to start the container with the mongoDB run: 
-
-```
-docker-compose -f docker-compose.yml up -d
-```
-
-Once the mongo container is up, run the program `initDB.py` to insert the necessary data. You will only have to run it the first time.
-
-```
-python initDB.py
-```
 
 This repository includes two programs that can be launched: `game.py` and `start.py`.
 
@@ -88,6 +62,14 @@ This program includes the following key and mouse events to control the graphica
 - ⬇ key: decreases the execution speed.
 - ➡ key: if the execution is stopped, the cellular automaton will evolve to its following state.
 
+Several rules are available and can be tested with the `game.py` command:
+
+- life_rule
+- result1
+- result2
+- result3
+- result4
+- result5
 
 ## start.py
 
@@ -103,21 +85,3 @@ where:
 - [initial_rule] is the rule that will take the algorithm to create the initial population. It must be a Bay's Space rule, that is, any rule that can be expressed with the format $E_bE_h/F_bF_h$. The paper contains a detailed definition on this term aswell.
 - [result_name] is the name which will be used to store the result on the database and that you could later use with the program `game.py`. It should be unique and can not be repeated.
 - [iterations] is the maximum number of iterations that the algorithm will execute. Normally it will stop whenever it finds a rule with a propper fitness value, but it has this parameter to avoid endless executions.
-
-
-After launching `initDB.py` you will have 6 rules stored on your database and that can be tested with the `game.py` command:
-
-- life_rule
-- result1
-- result2
-- result3
-- result4
-- result5
-
-
-
-Once you are done, if you want to stop the container:
-```
-docker-compose -f docker-compose.yml down
-```
-
