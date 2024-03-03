@@ -5,7 +5,7 @@
 Python implementation of Conway's Game of Life using PyOpenGL. The code includes aswell an implementation of the genetic algorithm described in [Research of Complexity in Cellular Automata
 through Evolutionary Algorithms](https://content.wolfram.com/uploads/sites/13/2018/02/17-3-2.pdf), used for finding new rules capable of generating [_spaceship patterns_](https://conwaylife.com/wiki/Spaceship). Read the paper for further information.
 
-This project was part of my Bachelours Thesis. To review the project's results you can check chapter 5 of the [thesis report](https://oa.upm.es/71278/1/TFG_GUILLERMO_LOPEZ_GARCIA.pdf).
+This project was part of my  Bachelor's Thesis. To review the project's results you can check chapter 5 of the [thesis report](https://oa.upm.es/71278/1/TFG_GUILLERMO_LOPEZ_GARCIA.pdf).
 
 # Dependencies
 
